@@ -46,6 +46,24 @@ function undraw(){
         squares[currentposition+index].classList.remove('tetra')
     })
 }
+timer=setInterval(movedown,1000)
+
+function movedown(){
+    undraw()
+    currentposition+=width
+    draw()
+    freeze()
+}
+function freeze(){
+    if(current.some(index=>squares[currentposition+index+width].classList.contains('taken'))){
+        current.forEach(index=> squares[currentposition+index].classList.add('taken'))
+    random=Math.floor(Math.random()*tetra.length)
+    current=tetra[random][currentrotation]
+    currentposition=4
+    draw()
+    }
+}
+
 
 
 
